@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const astronauts = require("./astronauts");
-console.log(astronauts[0]);
 
 const Astronaut = require("../models/astronaut");
 
@@ -17,13 +16,13 @@ db.once("open", () => {
 });
 
 const seedDb = async () => {
-    await Astronaut.deleteMany({});
-    for(i = 0; i < astronauts.length; i++){
-        const newAstronaut = new Astronaut(astronauts[i]);
-        await newAstronaut.save();
-    }
-}
+  await Astronaut.deleteMany({});
+  for (i = 0; i < astronauts.length; i++) {
+    const newAstronaut = new Astronaut(astronauts[i]);
+    await newAstronaut.save();
+  }
+};
 
 seedDb().then(() => {
-    db.close();
-  });
+  db.close();
+});
