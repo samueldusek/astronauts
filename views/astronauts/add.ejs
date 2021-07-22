@@ -2,13 +2,16 @@
 
 <h1>Add new astronaut</h1>
 <div>
-  <form method="POST">
+  <form action="/astronauts/<%= isEditing ? `${astronaut._id}?_method=PUT` : 'add' %>" method="POST">
     <label for="firstName">Firstname: </label>
     <input
       type="text"
       id="firstName"
       name="astronaut[firstName]"
       required
+      <% if(isEditing) { %>
+        value="<%= astronaut.firstName %>"
+        <% } %>  
     /><br />
     <label for="lastName">Lastname: </label>
     <input
@@ -16,6 +19,9 @@
       id="lastName"
       name="astronaut[lastName]"
       required
+      <% if(isEditing) { %>
+        value="<%= astronaut.lastName %>"
+        <% } %>  
     /><br />
     <label for="birthday">Birthday: </label>
     <input
@@ -23,6 +29,9 @@
       id="birthday"
       name="astronaut[birthday]"
       required
+      <% if(isEditing) { %>
+        value="<%= astronaut.birthday.toISOString().slice(0,10) %>"
+        <% } %>  
     /><br />
     <label for="superpower">Superpower: </label>
     <input
@@ -30,6 +39,9 @@
       id="superpower"
       name="astronaut[superpower]"
       required
+      <% if(isEditing) { %>
+        value="<%= astronaut.superpower %>"
+        <% } %>  
     /><br />
     <button type="Submit">Save</button>
   </form>
