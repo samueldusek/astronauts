@@ -1,0 +1,25 @@
+{
+  "name": "astronauts",
+  "version": "1.0.0",
+  "description": "This is a NodeJS and MongoDB based web application that might be used for keeping records about astronauts. You can add one, edit one and show all added astronauts.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samueldusek/astronauts.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samueldusek/astronauts/issues"
+  },
+  "homepage": "https://github.com/samueldusek/astronauts#readme",
+  "dependencies": {
+    "ejs-mate": "^3.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.3"
+  }
+}
