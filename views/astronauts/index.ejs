@@ -1,0 +1,33 @@
+<% layout('/layouts/mainTemplate') %>
+
+<h1>All Astronauts</h1>
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="4">All your astronauts</th>
+            </tr>
+            <tr>
+                <td>Firstname</td>
+                <td>Lastname</td>
+                <td>Birthday</td>
+                <td>Superpower</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i = 0; i < astronauts.length; i++){ %>
+                <tr>
+                    <td><%= astronauts[i].firstName %></td>
+                    <td><%= astronauts[i].lastName %></td>
+                    <td><%= astronauts[i].birthday.toLocaleDateString('en-US') %></td>
+                    <td><%= astronauts[i].superpower %></td>
+                    <td><a href="/astronauts/<%= astronauts[i]._id %>">E</a></td>
+                    <td><a href="/astronauts/<%= astronauts[i]._id %>">X</a></td>
+                </tr>
+            <% } %> 
+        </tbody>
+    </table>
+</div>
+<div>
+    <a href="astronauts/add">Add new astronaut</a>
+</div>
