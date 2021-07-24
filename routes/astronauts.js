@@ -2,13 +2,17 @@ const express = require("express");
 const router = express.Router();
 const astronautsController = require("../controllers/astronauts");
 const { body } = require("express-validator");
+const { ensureAuthenticated } = require("../utils/isAuth");
 
-router.route("/all").get(astronautsController.showAllAstronauts);
+router
+  .route("/all")
+  .get(ensureAuthenticated, astronautsController.showAllAstronauts);
 
 router
   .route("/add")
-  .get(astronautsController.showAddForm)
+  .get(ensureAuthenticated, astronautsController.showAddForm)
   .post(
+    ensureAuthenticated,
     body("astronaut.firstName")
       .isAlpha()
       .withMessage("Only letters are allowed in astronaut name."),
@@ -19,12 +23,15 @@ router
     astronautsController.addNewAstronaut
   );
 
-router.route("/:id/edit").get(astronautsController.showEditForm);
+router
+  .route("/:id/edit")
+  .get(ensureAuthenticated, astronautsController.showEditForm);
 
 router
   .route("/:id")
-  .delete(astronautsController.deleteAstronaut)
+  .delete(ensureAuthenticated, astronautsController.deleteAstronaut)
   .put(
+    ensureAuthenticated,
     body("astronaut.firstName")
       .isAlpha()
       .withMessage("Only letters are allowed in astronaut name."),

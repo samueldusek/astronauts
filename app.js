@@ -68,6 +68,12 @@ app.get("/", (req, res) => {
   });
 });
 
+app.get("/*", (req, res) => {
+  res.render("mains/404", {
+    pageTitle: "Oh now! You have got lost!",
+  });
+});
+
 app.listen(3000, () => {
   console.log("The app is listening on port 3000");
 });
