@@ -1,8 +1,12 @@
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
+const MongoStore = require("connect-mongo");
+const session = require("express-session");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 const app = express();
 app.engine("ejs", ejsMate);
@@ -11,6 +15,35 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use(
+  session({
+    name: "session",
+    secret: "secret",
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60,
+    },
+    store: MongoStore.create({
+      mongoUrl: "mongodb://localhost:27017/astronauts-db",
+      dbName: "hole-db",
+    }),
+  })
+);
+
+const User = require("./models/user");
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  next();
+});
 
 mongoose.connect("mongodb://localhost:27017/astronauts-db", {
   useNewUrlParser: true,
@@ -25,7 +58,9 @@ app.use("/astronauts", astronautsRoutes);
 app.use("/", usersRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.render("mains/home", {
+    pageTitle: "Astronauts",
+  });
 });
 
 app.listen(3000, () => {
