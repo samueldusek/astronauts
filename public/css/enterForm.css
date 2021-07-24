@@ -1,0 +1,32 @@
+.enterForm-body {
+  height: 100vh;
+  background-image: url("../img/logo2.svg");
+  background-position: bottom;
+  background-size: auto 50%;
+  background-repeat: no-repeat;
+}
+
+.enterForm-mainBox {
+  width: 90%;
+  max-width: 450px;
+  margin: auto;
+}
+
+.enterForm-mainBox .logo {
+  display: flex;
+  justify-content: center;
+}
+
+.enterForm-mainBox .logo .title {
+  text-decoration: none;
+  font-size: 1.25rem;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  color: black;
+  letter-spacing: 0.2rem;
+  font-weight: bold;
+}
+
+.enterForm-body form label {
+  font-weight: bold;
+}

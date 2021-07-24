@@ -29,7 +29,6 @@
 .mainBox .title a {
   color: #212529;
   text-decoration: none;
-  border: 2px solid white;
   background-color: white;
   padding: 0.6rem 1.2rem;
   width: 200px;
@@ -39,10 +38,11 @@
   font-weight: bold;
   border-radius: 500px;
   letter-spacing: 0.1rem;
+  transition: 200ms;
 }
 
 .mainBox .title a:hover {
-  transform: scale(1.04);
+  transform: scale(1.08);
 }
 
 @media (max-width: 768px) {

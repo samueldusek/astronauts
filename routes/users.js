@@ -42,7 +42,7 @@ router
       ),
     body("user.passwordConfirmation").custom((value, { req }) => {
       if (value !== req.body.user.password) {
-        throw new Error("Password you entered are not the same. Try it again.");
+        throw new Error("Passwords you entered are not the same. Try it again.");
       }
       return true;
     }),

@@ -1,0 +1,15 @@
+.navbar .navbar-brand {
+  letter-spacing: 0.2rem;
+  font-weight: bold;
+}
+
+.navbar .btn-light {
+  font-size: 0.9rem;
+  background-color: white;
+  border-radius: 100px;
+  letter-spacing: 0.1rem;
+}
+
+.navbar .nav-link:hover {
+  color: white;
+}
