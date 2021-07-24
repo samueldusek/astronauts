@@ -1,0 +1,58 @@
+.mainBox {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../img/logo3.svg");
+  background-position: center;
+  background-size: auto 135%;
+  background-repeat: no-repeat;
+}
+
+.mainBox .title {
+  width: 80%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.mainBox .title h1 {
+  font-size: 7rem;
+  color: white;
+}
+
+.mainBox .title p {
+  color: white;
+}
+
+.mainBox .title a {
+  color: #212529;
+  text-decoration: none;
+  border: 2px solid white;
+  background-color: white;
+  padding: 0.6rem 1.2rem;
+  width: 200px;
+  margin: auto;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 500px;
+  letter-spacing: 0.1rem;
+}
+
+.mainBox .title a:hover {
+  transform: scale(1.04);
+}
+
+@media (max-width: 768px) {
+  .mainBox .title h1 {
+    font-size: 5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .mainBox .title h1 {
+    font-size: 4rem;
+  }
+}
