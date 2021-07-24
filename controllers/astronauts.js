@@ -1,10 +1,12 @@
 const Astronaut = require("../models/astronaut");
+const User = require("../models/user");
 
 module.exports.showAllAstronauts = async (req, res) => {
-  const astronauts = await Astronaut.find({});
+  const { _id: userId } = req.user;
+  const user = await User.findById(userId).populate("astronauts");
   res.render("astronauts/index", {
     pageTitle: "All Astronauts",
-    astronauts: astronauts,
+    astronauts: user.astronauts,
   });
 };
 
@@ -26,23 +28,31 @@ module.exports.showEditForm = async (req, res) => {
 };
 
 module.exports.addNewAstronaut = async (req, res) => {
+  const { _id: userId } = req.user;
   const { astronaut } = req.body;
+  const user = await User.findById(userId);
   const newAstronaut = new Astronaut(astronaut);
   const savedAstronaut = await newAstronaut.save();
+  user.astronauts.push(savedAstronaut);
+  await user.save();
   res.redirect("/astronauts/all");
 };
 
 module.exports.deleteAstronaut = async (req, res) => {
-  const { id } = req.params;
-  const deletedAstronaut = await Astronaut.findByIdAndDelete(id);
+  const { id: astronautId } = req.params;
+  const deletedAstronaut = await Astronaut.findByIdAndDelete(astronautId);
   res.redirect("/astronauts/all");
 };
 
 module.exports.editAstronaut = async (req, res) => {
-  const { id } = req.params;
+  const { id: astronautId } = req.params;
   const { astronaut } = req.body;
-  const editedAstronaut = await Astronaut.findByIdAndUpdate(id, astronaut, {
-    useFindAndModify: false,
-  });
+  const editedAstronaut = await Astronaut.findByIdAndUpdate(
+    astronautId,
+    astronaut,
+    {
+      useFindAndModify: false,
+    }
+  );
   res.redirect("/astronauts/all");
 };

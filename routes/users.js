@@ -13,10 +13,10 @@ router
   .get(usersController.showLoginForm)
   .post(
     passport.authenticate("local", {
-      successRedirect: "/",
+      successRedirect: "/astronauts/all",
       failureRedirect: "/login",
       failureFlash: "Invalid username or password. Try it again please.",
-      successFlash: "You have been successfully logged in."
+      successFlash: "You have been successfully logged in.",
     })
   );
 
