@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo");
 const session = require("express-session");
+const flash = require("connect-flash");
 const ejsMate = require("ejs-mate");
 const methodOverride = require("method-override");
 const passport = require("passport");
@@ -33,6 +34,8 @@ app.use(
   })
 );
 
+app.use(flash());
+
 const User = require("./models/user");
 app.use(passport.initialize());
 app.use(passport.session());
@@ -42,6 +45,8 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
   next();
 });
 

@@ -15,6 +15,8 @@ router
     passport.authenticate("local", {
       successRedirect: "/",
       failureRedirect: "/login",
+      failureFlash: "Invalid username or password. Try it again please.",
+      successFlash: "You have been successfully logged in."
     })
   );
 
