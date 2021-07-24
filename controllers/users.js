@@ -39,7 +39,6 @@ module.exports.showLoginForm = (req, res) => {
 };
 
 module.exports.login = (req, res) => {
-  console.log(req.body.user);
   res.redirect("/login");
 };
 

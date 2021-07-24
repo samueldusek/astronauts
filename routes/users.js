@@ -42,7 +42,9 @@ router
       ),
     body("user.passwordConfirmation").custom((value, { req }) => {
       if (value !== req.body.user.password) {
-        throw new Error("Passwords you entered are not the same. Try it again.");
+        throw new Error(
+          "Passwords you entered are not the same. Try it again."
+        );
       }
       return true;
     }),
@@ -56,7 +58,8 @@ router
     passport.authenticate("local", {
       successRedirect: "/astronauts/all",
       failureRedirect: "/login",
-      failureFlash: "Invalid username or password. Try it again please.",
+      failureFlash:
+        "Ops! Username or password is invalid. Try it again please.",
       successFlash: "You have been successfully logged in.",
     })
   );
