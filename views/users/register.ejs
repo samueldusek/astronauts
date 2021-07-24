@@ -9,16 +9,24 @@
     id="username"
     placeholder="Enter your username"
     name="user[username]"
+    value="<%= username ? username : "" %>"
     required
   /><br />
+  <% if(errors.find(error => error.param === "user.username")) { %>
+  <p><%= errors.filter(error => error.param === 'user.username')[0].msg %> </p>
+  <% } %>  
   <label for="email">Email:</label>
   <input
     type="email"
     id="email"
     placeholder="Enter your email"
     name="user[email]"
+    value="<%= email ? email : "" %>" 
     required
   /><br />
+  <% if(errors.find(error => error.param === "user.email")) { %>
+    <p><%= errors.filter(error => error.param === 'user.email')[0].msg %> </p>
+  <% } %>  
   <label for="password">Password:</label>
   <input
     type="password"
@@ -27,6 +35,9 @@
     name="user[password]"
     required
   /><br />
+  <% if(errors.find(error => error.param === "user.password")) { %>
+    <p><%= errors.filter(error => error.param === 'user.password')[0].msg %> </p>
+  <% } %>  
   <label for="passwordConfirmation">Password confirmation:</label>
   <input
     type="password"
@@ -35,5 +46,8 @@
     name="user[passwordConfirmation]"
     required
   /><br />
+  <% if(errors.find(error => error.param === "user.passwordConfirmation")) { %>
+    <p><%= errors.filter(error => error.param === 'user.passwordConfirmation')[0].msg %> </p>
+  <% } %>  
   <button type="submit">Register</button>
 </form>
