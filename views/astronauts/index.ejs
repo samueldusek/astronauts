@@ -1,5 +1,6 @@
 <% layout('/layouts/mainTemplate') %>
 
+<h2 class="mt-1">Hi <%= currentUser.username %>! Here are..</h2>
 <h1 class="mb-5 mt-1">All your astronauts</h1>
 <div class="table-responsive-md">
   <table class="table table-hover">
@@ -27,15 +28,9 @@
             href="/astronauts/<%= astronauts[i]._id %>/edit"
             ><i class="bi bi-pencil-square"></i
           ></a>
-          <form
-            class="d-inline"
-            action="/astronauts/<%= astronauts[i]._id %>/?_method=DELETE"
-            method="POST"
-          >
-            <button class="btn btn-sm btn-outline-dark" type="submit">
-              <i class="bi bi-trash"></i>
-            </button>
-          </form>
+          <button type="button" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<%= i+1 %>">
+            <i class="bi bi-trash"></i>
+          </button>
         </td>
       </tr>
       <% } %>
@@ -45,3 +40,36 @@
 <div class="d-flex justify-content-end">
   <a class="btn btn-dark" href="/astronauts/add">Add new astronaut</a>
 </div>
+
+<% for(let i = 0; i < astronauts.length; i++){ %>
+  <div class="modal fade" id="exampleModal<%= i+1 %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold" id="exampleModalLabel">Delete astronaut</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex align-items-center">
+          <p>Are you sure you want to delete your astronaut <strong><%= astronauts[i].firstName %> <%= astronauts[i].lastName %></strong>?</p>
+          <img
+          src="/img/logo2.svg"
+          alt="Astronaut and spaceship"
+          width="200"
+        />
+        </div>
+        <div class="modal-footer d-flex">
+          <button type="button" class="btn btn-dark flex-fill" data-bs-dismiss="modal">Cancel</button>
+          <form
+          class="flex-fill"
+          action="/astronauts/<%= astronauts[i]._id %>/?_method=DELETE"
+          method="POST"
+          >
+            <button class="btn btn-outline-danger w-100" type="submit">
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+<% } %>
