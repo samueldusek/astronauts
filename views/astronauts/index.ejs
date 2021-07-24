@@ -1,35 +1,40 @@
 <% layout('/layouts/mainTemplate') %>
 
-<h1>All Astronauts</h1>
-<div>
-  <table>
-    <thead>
+<h1 class="mb-5 mt-1">All your astronauts</h1>
+<div class="table-responsive-md">
+  <table class="table table-hover">
+    <thead class="table-dark">
       <tr>
-        <th colspan="4">All your astronauts</th>
-      </tr>
-      <tr>
-        <td>Firstname</td>
-        <td>Lastname</td>
-        <td>Birthday</td>
-        <td>Superpower</td>
+        <th scope="col">#</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Birthday</th>
+        <th scope="col">Superpower</th>
+        <th scope="col">Options</th>
       </tr>
     </thead>
     <tbody>
       <% for(let i = 0; i < astronauts.length; i++){ %>
       <tr>
+        <th scope="row"><%= i+1 %></th>
         <td><%= astronauts[i].firstName %></td>
         <td><%= astronauts[i].lastName %></td>
         <td><%= astronauts[i].birthday.toLocaleDateString('en-US') %></td>
         <td><%= astronauts[i].superpower %></td>
         <td>
-          <a href="/astronauts/<%= astronauts[i]._id %>/edit">E</a>
-        </td>
-        <td>
+          <a
+            class="btn btn-sm btn-outline-dark"
+            href="/astronauts/<%= astronauts[i]._id %>/edit"
+            ><i class="bi bi-pencil-square"></i
+          ></a>
           <form
+            class="d-inline"
             action="/astronauts/<%= astronauts[i]._id %>/?_method=DELETE"
             method="POST"
           >
-            <button type="submit">X</button>
+            <button class="btn btn-sm btn-outline-dark" type="submit">
+              <i class="bi bi-trash"></i>
+            </button>
           </form>
         </td>
       </tr>
@@ -37,6 +42,6 @@
     </tbody>
   </table>
 </div>
-<div>
-  <a href="/astronauts/add">Add new astronaut</a>
+<div class="d-flex justify-content-end">
+  <a class="btn btn-dark" href="/astronauts/add">Add new astronaut</a>
 </div>

@@ -1,4 +1,13 @@
 .alert-error {
+  max-width: 600px;
+  margin: auto;
   border: 1px solid red;
   color: red;
+}
+
+.alert-good {
+  max-width: 600px;
+  margin: auto;
+  border: 1px solid green;
+  color: green;
 }
