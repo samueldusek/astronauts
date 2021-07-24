@@ -61,6 +61,10 @@ const usersRoutes = require("./routes/users");
 
 app.use("/astronauts", astronautsRoutes);
 app.use("/", usersRoutes);
+app.use((err, req, res, next) => {
+  const { status = 500, message = "Something went wrong" } = err;
+  res.status(status).send(message);
+});
 
 app.get("/", (req, res) => {
   res.render("mains/home", {

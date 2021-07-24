@@ -3,10 +3,11 @@ const router = express.Router();
 const astronautsController = require("../controllers/astronauts");
 const { body } = require("express-validator");
 const { ensureAuthenticated } = require("../utils/isAuth");
+const wrapAsync = require("../utils/wrapAsync");
 
 router
   .route("/all")
-  .get(ensureAuthenticated, astronautsController.showAllAstronauts);
+  .get(ensureAuthenticated, wrapAsync(astronautsController.showAllAstronauts));
 
 router
   .route("/add")
@@ -20,16 +21,16 @@ router
       .isAlpha()
       .withMessage("Only letters are allowed in astronaut name."),
     body("astronaut.birthday").isDate().withMessage("Enter valid date format."),
-    astronautsController.addNewAstronaut
+    wrapAsync(astronautsController.addNewAstronaut)
   );
 
 router
   .route("/:id/edit")
-  .get(ensureAuthenticated, astronautsController.showEditForm);
+  .get(ensureAuthenticated, wrapAsync(astronautsController.showEditForm));
 
 router
   .route("/:id")
-  .delete(ensureAuthenticated, astronautsController.deleteAstronaut)
+  .delete(ensureAuthenticated, wrapAsync(astronautsController.deleteAstronaut))
   .put(
     ensureAuthenticated,
     body("astronaut.firstName")
@@ -39,7 +40,7 @@ router
       .isAlpha()
       .withMessage("Only letters are allowed in astronaut name."),
     body("astronaut.birthday").isDate().withMessage("Enter valid date format."),
-    astronautsController.editAstronaut
+    wrapAsync(astronautsController.editAstronaut)
   );
 
 module.exports = router;

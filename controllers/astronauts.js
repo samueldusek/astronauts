@@ -1,10 +1,14 @@
 const Astronaut = require("../models/astronaut");
 const User = require("../models/user");
 const { validationResult } = require("express-validator");
+const AppError = require("../utils/AppError");
 
-module.exports.showAllAstronauts = async (req, res) => {
+module.exports.showAllAstronauts = async (req, res, next) => {
   const { _id: userId } = req.user;
   const user = await User.findById(userId).populate("astronauts");
+  if (!user) {
+    throw new AppError("User not found!", 404);
+  }
   res.render("astronauts/index", {
     pageTitle: "All Astronauts",
     astronauts: user.astronauts,
@@ -20,9 +24,12 @@ module.exports.showAddForm = (req, res) => {
   });
 };
 
-module.exports.showEditForm = async (req, res) => {
+module.exports.showEditForm = async (req, res, next) => {
   const { id } = req.params;
   const editedAstronaut = await Astronaut.findById(id);
+  if (!editedAstronaut) {
+    throw new AppError("Astronaut not found!", 404);
+  }
   res.render("astronauts/add", {
     pageTitle: "Edit astronaut",
     isEditing: true,
@@ -35,7 +42,7 @@ module.exports.showEditForm = async (req, res) => {
   });
 };
 
-module.exports.addNewAstronaut = async (req, res) => {
+module.exports.addNewAstronaut = async (req, res, next) => {
   const { _id: userId } = req.user;
   const { astronaut } = req.body;
 
@@ -54,6 +61,9 @@ module.exports.addNewAstronaut = async (req, res) => {
   }
 
   const user = await User.findById(userId);
+  if (!user) {
+    throw new AppError("User not Found!", 404);
+  }
   const newAstronaut = new Astronaut(astronaut);
   const savedAstronaut = await newAstronaut.save();
   user.astronauts.push(savedAstronaut);
@@ -61,13 +71,13 @@ module.exports.addNewAstronaut = async (req, res) => {
   res.redirect("/astronauts/all");
 };
 
-module.exports.deleteAstronaut = async (req, res) => {
+module.exports.deleteAstronaut = async (req, res, next) => {
   const { id: astronautId } = req.params;
   const deletedAstronaut = await Astronaut.findByIdAndDelete(astronautId);
   res.redirect("/astronauts/all");
 };
 
-module.exports.editAstronaut = async (req, res) => {
+module.exports.editAstronaut = async (req, res, next) => {
   const { id: astronautId } = req.params;
   const { astronaut } = req.body;
 
