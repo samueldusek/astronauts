@@ -7,6 +7,9 @@ router
   .get(usersController.showRegisterForm)
   .post(usersController.registerNewUser);
 
-router.route("/login").get(usersController.showLoginForm);
+router
+  .route("/login")
+  .get(usersController.showLoginForm)
+  .post(usersController.login);
 
 module.exports = router;
