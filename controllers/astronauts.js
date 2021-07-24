@@ -1,5 +1,6 @@
 const Astronaut = require("../models/astronaut");
 const User = require("../models/user");
+const { validationResult } = require("express-validator");
 
 module.exports.showAllAstronauts = async (req, res) => {
   const { _id: userId } = req.user;
@@ -14,6 +15,8 @@ module.exports.showAddForm = (req, res) => {
   res.render("astronauts/add", {
     pageTitle: "Add new astronaut",
     isEditing: false,
+    isFixing: false,
+    errors: [],
   });
 };
 
@@ -23,13 +26,33 @@ module.exports.showEditForm = async (req, res) => {
   res.render("astronauts/add", {
     pageTitle: "Edit astronaut",
     isEditing: true,
-    astronaut: editedAstronaut,
+    isFixing: false,
+    astronaut: {
+      ...editedAstronaut._doc,
+      birthday: editedAstronaut.birthday.toISOString().slice(0, 10),
+    },
+    errors: [],
   });
 };
 
 module.exports.addNewAstronaut = async (req, res) => {
   const { _id: userId } = req.user;
   const { astronaut } = req.body;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors.array());
+    return res.render("astronauts/add", {
+      pageTitle: "Add new astronaut",
+      isFixing: true,
+      isEditing: false,
+      errors: errors.array().map((error) => {
+        return { msg: error.msg, param: error.param };
+      }),
+      astronaut: astronaut,
+    });
+  }
+
   const user = await User.findById(userId);
   const newAstronaut = new Astronaut(astronaut);
   const savedAstronaut = await newAstronaut.save();
@@ -47,6 +70,20 @@ module.exports.deleteAstronaut = async (req, res) => {
 module.exports.editAstronaut = async (req, res) => {
   const { id: astronautId } = req.params;
   const { astronaut } = req.body;
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.render("astronauts/add", {
+      pageTitle: "Add new astronaut",
+      isFixing: true,
+      isEditing: true,
+      errors: errors.array().map((error) => {
+        return { msg: error.msg, param: error.param };
+      }),
+      astronaut: { ...astronaut, _id: astronautId },
+    });
+  }
+
   const editedAstronaut = await Astronaut.findByIdAndUpdate(
     astronautId,
     astronaut,

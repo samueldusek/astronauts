@@ -9,20 +9,26 @@
       id="firstName"
       name="astronaut[firstName]"
       required
-      <% if(isEditing) { %>
+      <% if(isEditing || isFixing) { %>
         value="<%= astronaut.firstName %>"
         <% } %>  
     /><br />
+    <% if(errors.find(error => error.param === "astronaut.firstName")) { %>
+      <p><%= errors.filter(error => error.param === 'astronaut.firstName')[0].msg %> </p>
+      <% } %>  
     <label for="lastName">Lastname: </label>
     <input
       type="text"
       id="lastName"
       name="astronaut[lastName]"
       required
-      <% if(isEditing) { %>
+      <% if(isEditing || isFixing) { %>
         value="<%= astronaut.lastName %>"
         <% } %>  
     /><br />
+    <% if(errors.find(error => error.param === "astronaut.lastName")) { %>
+      <p><%= errors.filter(error => error.param === 'astronaut.lastName')[0].msg %> </p>
+      <% } %>  
     <label for="birthday">Birthday: </label>
     <input
       type="date"
@@ -30,19 +36,25 @@
       name="astronaut[birthday]"
       required
       <% if(isEditing) { %>
-        value="<%= astronaut.birthday.toISOString().slice(0,10) %>"
+        value="<%= astronaut.birthday %>"
         <% } %>  
     /><br />
+    <% if(errors.find(error => error.param === "astronaut.birthday")) { %>
+      <p><%= errors.filter(error => error.param === 'astronaut.birthday')[0].msg %> </p>
+      <% } %>  
     <label for="superpower">Superpower: </label>
     <input
       type="text"
       id="superpower"
       name="astronaut[superpower]"
       required
-      <% if(isEditing) { %>
+      <% if(isEditing || isFixing) { %>
         value="<%= astronaut.superpower %>"
         <% } %>  
     /><br />
+    <% if(errors.find(error => error.param === "astronaut.superpower")) { %>
+      <p><%= errors.filter(error => error.param === 'astronaut.superpower')[0].msg %> </p>
+      <% } %>  
     <button type="Submit">Save</button>
   </form>
 </div>
