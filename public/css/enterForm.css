@@ -1,12 +1,8 @@
 .enterForm-body {
   height: 100vh;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.9),
-      rgba(255, 255, 255, 0.9)
-    ),
-    url("../img/logo.png");
+  background-image: url("../img/logo_white_overlay.png");
   background-position: bottom;
-  background-size: auto 60%;
+  background-size: auto 55%;
   background-repeat: no-repeat;
 }
 
