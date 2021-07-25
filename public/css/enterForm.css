@@ -4,9 +4,9 @@
       rgba(255, 255, 255, 0.9),
       rgba(255, 255, 255, 0.9)
     ),
-    url("../img/logo2.svg");
+    url("../img/logo.png");
   background-position: bottom;
-  background-size: auto 50%;
+  background-size: auto 60%;
   background-repeat: no-repeat;
 }
 

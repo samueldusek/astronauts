@@ -63,8 +63,7 @@ router
     passport.authenticate("local", {
       successRedirect: "/astronauts/all",
       failureRedirect: "/login",
-      failureFlash:
-        "Ops! Username or password is invalid. Try it again please.",
+      failureFlash: "Username or password is invalid. Try it again please.",
       successFlash: "You have been successfully logged in.",
     })
   );
