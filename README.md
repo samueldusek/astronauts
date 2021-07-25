@@ -2,13 +2,17 @@
 
 NodeJS and MongoDB based web application for keeping records about astronauts.
 
-![Logo](https://i.ibb.co/8s12kV3/undraw-to-the-moon-v1mv.png)
+![Logo](https://i.ibb.co/n6mYdcS/github-header.png)
 
 ## Main features
 
 - Register and login new user
 - See all astronauts for given user
 - Edit and delete astronauts
+
+## Live demo
+
+You can find this app running here: [Astronauts by Samuel Dusek](https://astronauts-samuel-dusek.herokuapp.com/)
 
 ## To run this app
 
@@ -21,7 +25,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd hole-of-the-year
+  cd astronauts
 ```
 
 Install dependencies
@@ -30,18 +34,10 @@ Install dependencies
   npm install
 ```
 
-Seed the database
-
-```bash
-  cd seeds
-  node app.js
-```
-
 Start the server and the app
 
 ```bash
-  cd ..
-  nodemon app.js
+  npm start
 ```
 
 You must have MongoDB and NodeJS installed on your machine.
