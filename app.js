@@ -63,20 +63,23 @@ app.use("/astronauts", astronautsRoutes);
 app.use("/", usersRoutes);
 app.use((err, req, res, next) => {
   const { status = 500, message = "Something went wrong" } = err;
-  res.status(status).send(message);
+  res.status(status).render("mains/404", {
+    pageTitle: "Ow no! This does not exist.",
+    path: "/mains/404",
+  });
 });
 
 app.get("/", (req, res) => {
   res.render("mains/home", {
     pageTitle: "Astronauts",
-    path: "/mains/home"
+    path: "/mains/home",
   });
 });
 
 app.get("/*", (req, res) => {
   res.render("mains/404", {
-    pageTitle: "Oh now! You have got lost!",
-    path: "/mains/404"
+    pageTitle: "Oh no! You lost!",
+    path: "/mains/404",
   });
 });
 

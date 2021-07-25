@@ -24,9 +24,11 @@
     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
   />
   <link rel="stylesheet" href="/css/font.css" />
-  <link rel="stylesheet" href="/css/home.css" />
   <link rel="stylesheet" href="/css/navbar.css" />
   <link rel="stylesheet" href="/css/flash.css" />
+  <% if (path === "/mains/home") { %> 
+    <link rel="stylesheet" href="/css/home.css" />
+  <% } %>
   <% if (path === "/astronauts/all" && astronauts.length === 0) { %> 
     <link rel="stylesheet" href="/css/allAstronautsEmpty.css" />
   <% } %>

@@ -30,6 +30,10 @@ module.exports.registerNewUser = async (req, res) => {
   const registeredUser = await User.register(user, password);
   req.login(registeredUser, (error) => {
     if (error) return next(error);
+    req.flash(
+      "success",
+      `Welcome ${username}! You have been successfully registered.`
+    );
     return res.redirect("/astronauts/all");
   });
 };

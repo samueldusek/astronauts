@@ -45,6 +45,14 @@
   transform: scale(1.08);
 }
 
+.alert-good {
+  max-width: 600px;
+  margin: auto;
+  border: 1px solid white;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
 @media (max-width: 768px) {
   .mainBox .title h1 {
     font-size: 5rem;

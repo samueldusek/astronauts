@@ -9,7 +9,7 @@
   </div>
   <form class="validated-form" action="/astronauts/<%= isEditing ? `${astronaut._id}?_method=PUT` : 'add' %>" method="POST" novalidate>
     <div class="mb-3">
-      <label for="firstName" class="form-label">Firstname: </label>
+      <label for="firstName" class="form-label">Firstname</label>
       <input
         class="form-control <%= errors.find(e => e.param === "astronaut.firstName") ? "is-invalid" : "" %>"
         type="text"
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="mb-3">
-      <label for="lastName" class="form-label">Lastname: </label>
+      <label for="lastName" class="form-label">Lastname</label>
       <input
         class="form-control"
         type="text"
@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="mb-3">  
-      <label for="birthday" class="form-label">Birthday: </label>
+      <label for="birthday" class="form-label">Birthday</label>
       <input
         class="form-control"
         type="date"
@@ -71,7 +71,7 @@
       </div>
     </div>
     <div class="mb-3">
-    <label for="superpower" class="form-label">Superpower: </label>
+    <label for="superpower" class="form-label">Superpower</label>
     <input
       class="form-control"
       type="text"
