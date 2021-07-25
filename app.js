@@ -1,3 +1,4 @@
+require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -17,10 +18,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "public")));
 
+const dbUrl = process.env.DB_URL || "mongodb://localhost:27017/astronauts-db";
+const port = process.env.PORT || 3000;
+
 app.use(
   session({
     name: "session",
-    secret: "secret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -28,8 +32,8 @@ app.use(
       maxAge: 1000 * 60 * 60,
     },
     store: MongoStore.create({
-      mongoUrl: "mongodb://localhost:27017/astronauts-db",
-      dbName: "hole-db",
+      mongoUrl: dbUrl,
+      dbName: "astronauts-db",
     }),
   })
 );
@@ -50,7 +54,7 @@ app.use((req, res, next) => {
   next();
 });
 
-mongoose.connect("mongodb://localhost:27017/astronauts-db", {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -83,6 +87,6 @@ app.get("/*", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("The app is listening on port 3000");
+app.listen(port, () => {
+  console.log(`The app is listening on port ${port}`);
 });

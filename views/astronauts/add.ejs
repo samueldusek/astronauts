@@ -32,7 +32,7 @@
     <div class="mb-3">
       <label for="lastName" class="form-label">Lastname</label>
       <input
-        class="form-control"
+        class="form-control <%= errors.find(e => e.param === "astronaut.lastName") ? "is-invalid" : "" %>"
         type="text"
         id="lastName"
         name="astronaut[lastName]"
@@ -53,7 +53,7 @@
     <div class="mb-3">  
       <label for="birthday" class="form-label">Birthday</label>
       <input
-        class="form-control"
+        class="form-control <%= errors.find(e => e.param === "astronaut.birthday") ? "is-invalid" : "" %>"
         type="date"
         id="birthday"
         name="astronaut[birthday]"
@@ -73,7 +73,7 @@
     <div class="mb-3">
     <label for="superpower" class="form-label">Superpower</label>
     <input
-      class="form-control"
+      class="form-control <%= errors.find(e => e.param === "astronaut.superpower") ? "is-invalid" : "" %>"
       type="text"
       id="superpower"
       name="astronaut[superpower]"
