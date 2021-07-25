@@ -27,6 +27,9 @@
   <link rel="stylesheet" href="/css/home.css" />
   <link rel="stylesheet" href="/css/navbar.css" />
   <link rel="stylesheet" href="/css/flash.css" />
+  <% if (path === "/astronauts/all" && astronauts.length === 0) { %> 
+    <link rel="stylesheet" href="/css/allAstronautsEmpty.css" />
+  <% } %>
   <% if (path === "/astronauts/add") { %> 
     <link rel="stylesheet" href="/css/addForm.css" />
   <% } %>

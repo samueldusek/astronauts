@@ -1,75 +1,85 @@
 <% layout('/layouts/mainTemplate') %>
 
-<h2 class="mt-1">Hi <%= currentUser.username %>! Here are..</h2>
-<h1 class="mb-5 mt-1">All your astronauts</h1>
-<div class="table-responsive-md">
-  <table class="table table-hover">
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Firstname</th>
-        <th scope="col">Lastname</th>
-        <th scope="col">Birthday</th>
-        <th scope="col">Superpower</th>
-        <th scope="col">Options</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% for(let i = 0; i < astronauts.length; i++){ %>
-      <tr>
-        <th scope="row"><%= i+1 %></th>
-        <td><%= astronauts[i].firstName %></td>
-        <td><%= astronauts[i].lastName %></td>
-        <td><%= astronauts[i].birthday.toLocaleDateString('en-US') %></td>
-        <td><%= astronauts[i].superpower %></td>
-        <td>
-          <a
-            class="btn btn-sm btn-outline-dark"
-            href="/astronauts/<%= astronauts[i]._id %>/edit"
-            ><i class="bi bi-pencil-square"></i
-          ></a>
-          <button type="button" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<%= i+1 %>">
-            <i class="bi bi-trash"></i>
-          </button>
-        </td>
-      </tr>
-      <% } %>
-    </tbody>
-  </table>
-</div>
-<div class="d-flex justify-content-end">
-  <a class="btn btn-dark" href="/astronauts/add">Add new astronaut</a>
-</div>
-
-<% for(let i = 0; i < astronauts.length; i++){ %>
-  <div class="modal fade" id="exampleModal<%= i+1 %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title fw-bold" id="exampleModalLabel">Delete astronaut</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body d-flex align-items-center">
-          <p>Are you sure you want to delete your astronaut <strong><%= astronauts[i].firstName %> <%= astronauts[i].lastName %></strong>?</p>
-          <img
-          src="/img/logo2.svg"
-          alt="Astronaut and spaceship"
-          width="200"
-        />
-        </div>
-        <div class="modal-footer d-flex">
-          <button type="button" class="btn btn-dark flex-fill" data-bs-dismiss="modal">Cancel</button>
-          <form
-          class="flex-fill"
-          action="/astronauts/<%= astronauts[i]._id %>/?_method=DELETE"
-          method="POST"
-          >
-            <button class="btn btn-outline-danger w-100" type="submit">
-              Delete
+<% if(astronauts.length === 0) { %>
+  <div class="mainBox-astronauts">
+    <h2 class="mt-4">Hi <%= currentUser.username %>!</h2>
+    <h1 class="mt-4">It looks like you do not have any astronauts yet!</h1>
+    <p class="lead mt-4">Start recording your astronauts by clicking on the button bellow..</p>
+    <div class="mt-4">
+      <a href="/astronauts/add">Add my 1st astronaut</a>
+    </div>
+  </div>
+<% } else { %> 
+  <h1 class="mb-5 mt-1">All your astronauts</h1>
+  <div class="table-responsive-md">
+    <table class="table table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Firstname</th>
+          <th scope="col">Lastname</th>
+          <th scope="col">Birthday</th>
+          <th scope="col">Superpower</th>
+          <th scope="col">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(let i = 0; i < astronauts.length; i++){ %>
+        <tr>
+          <th scope="row"><%= i+1 %></th>
+          <td><%= astronauts[i].firstName %></td>
+          <td><%= astronauts[i].lastName %></td>
+          <td><%= astronauts[i].birthday.toLocaleDateString('en-US') %></td>
+          <td><%= astronauts[i].superpower %></td>
+          <td>
+            <a
+              class="btn btn-sm btn-outline-dark"
+              href="/astronauts/<%= astronauts[i]._id %>/edit"
+              ><i class="bi bi-pencil-square"></i
+            ></a>
+            <button type="button" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal<%= i+1 %>">
+              <i class="bi bi-trash"></i>
             </button>
-          </form>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-end">
+    <a class="btn btn-dark" href="/astronauts/add">Add new astronaut</a>
+  </div>
+  
+  <% for(let i = 0; i < astronauts.length; i++){ %>
+    <div class="modal fade" id="exampleModal<%= i+1 %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold" id="exampleModalLabel">Delete astronaut</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body d-flex align-items-center">
+            <p>Are you sure you want to delete your astronaut <strong><%= astronauts[i].firstName %> <%= astronauts[i].lastName %></strong>?</p>
+            <img
+            src="/img/logo2.svg"
+            alt="Astronaut and spaceship"
+            width="200"
+          />
+          </div>
+          <div class="modal-footer d-flex">
+            <button type="button" class="btn btn-dark flex-fill" data-bs-dismiss="modal">Cancel</button>
+            <form
+            class="flex-fill"
+            action="/astronauts/<%= astronauts[i]._id %>/?_method=DELETE"
+            method="POST"
+            >
+              <button class="btn btn-outline-danger w-100" type="submit">
+                Delete
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<% } %>
+  <% } %>
+<% } %> 

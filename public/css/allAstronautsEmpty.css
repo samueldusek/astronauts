@@ -1,0 +1,39 @@
+body {
+  background-image: url("../img/logo4.svg");
+  background-position: bottom;
+  background-size: auto 70%;
+  background-repeat: no-repeat;
+}
+
+.mainBox-astronauts {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+}
+
+.mainBox-astronauts div {
+  display: flex;
+  justify-content: center;
+}
+
+.mainBox-astronauts a {
+  color: white;
+  text-decoration: none;
+  background-color: black;
+  padding: 0.6rem 1.2rem;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 500px;
+  letter-spacing: 0.1rem;
+  transition: 200ms;
+}
+
+.mainBox-astronauts a:hover {
+  transform: scale(1.08);
+}

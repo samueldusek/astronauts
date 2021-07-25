@@ -12,6 +12,10 @@
   margin: auto;
 }
 
+.enterForm-mainBox h1 {
+  text-align: center;
+}
+
 .enterForm-mainBox .logo {
   display: flex;
   justify-content: center;
