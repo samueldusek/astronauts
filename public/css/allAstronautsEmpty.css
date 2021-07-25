@@ -1,9 +1,5 @@
 body {
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.6),
-      rgba(255, 255, 255, 0.6)
-    ),
-    url("../img/logo4.svg");
+  background-image: url("../img/logo1_white_overlay.png");
   background-position: bottom;
   background-size: auto 70%;
   background-repeat: no-repeat;
