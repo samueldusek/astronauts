@@ -4,7 +4,8 @@
   "description": "This is a NodeJS and MongoDB based web application that might be used for keeping records about astronauts. You can add one, edit one and show all added astronauts.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
