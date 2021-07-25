@@ -1,5 +1,9 @@
 body {
-  background-image: url("../img/logo2.svg");
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.8)
+    ),
+    url("../img/logo2.svg");
   background-position: bottom;
   background-size: auto 50%;
   background-repeat: no-repeat;
@@ -31,4 +35,12 @@ body {
 
 .addForm-mainBox form label {
   font-weight: bold;
+}
+
+.addForm-mainBox .btn-outline-dark {
+  background-color: white;
+}
+
+.addForm-mainBox .btn-outline-dark:hover {
+  background-color: #212529;
 }

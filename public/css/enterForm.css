@@ -1,6 +1,10 @@
 .enterForm-body {
   height: 100vh;
-  background-image: url("../img/logo2.svg");
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)
+    ),
+    url("../img/logo2.svg");
   background-position: bottom;
   background-size: auto 50%;
   background-repeat: no-repeat;
