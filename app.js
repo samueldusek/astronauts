@@ -81,7 +81,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/*", (req, res) => {
-  res.render("mains/404", {
+  res.status(404).render("mains/404", {
     pageTitle: "Oh no! You lost!",
     path: "/mains/404",
   });
