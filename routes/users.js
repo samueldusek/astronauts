@@ -28,7 +28,7 @@ router
       body("user.username")
         .isAlphanumeric()
         .withMessage(
-          "Only numbers and letters are allowed in username. Please user different one."
+          "Only numbers and letters are allowed in username. Please use different one."
         )
         .custom((value) => {
           return User.findOne({ username: value }).then((user) => {
