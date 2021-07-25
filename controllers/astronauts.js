@@ -3,6 +3,8 @@ const User = require("../models/user");
 const { validationResult } = require("express-validator");
 const AppError = require("../utils/AppError");
 
+const ITEMS_PER_PAGE = 10;
+
 module.exports.showAllAstronauts = async (req, res, next) => {
   const { _id: userId } = req.user;
   const user = await User.findById(userId).populate("astronauts");

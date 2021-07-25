@@ -1,3 +1,15 @@
 <% layout('/layouts/mainTemplate') %>
 
-<h1>It seems like you have got lost!</h1>
+<div class="mainBox-404">
+  <div class="text">
+    <h1 class="my-3">It looks like you lost!</h1>
+
+    <p class="lead mb-3">Try to click on the rocket.</p>
+
+    <p class="lead mb-3">Hopefully, it will help you reach your destination.</p>
+  </div>
+
+  <a href="<%= currentUser ? "/astronauts/all" : "/" %>">
+    <img src="/img/logo.svg" alt="Rocket" />
+  </a>
+</div>

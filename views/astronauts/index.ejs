@@ -10,10 +10,10 @@
     </div>
   </div>
 <% } else { %> 
-  <h1 class="mb-5 mt-1">All your astronauts</h1>
+  <h1 class="mb-5 mt-1">All <%= currentUser.username %>'s astronauts</h1>
   <div class="table-responsive-md">
     <table class="table table-hover">
-      <thead class="table-dark">
+      <thead>
         <tr>
           <th scope="col">#</th>
           <th scope="col">Firstname</th>
@@ -46,7 +46,7 @@
       </tbody>
     </table>
   </div>
-  <div class="d-flex justify-content-end">
+  <div class="d-flex justify-content-end mb-3">
     <a class="btn btn-dark" href="/astronauts/add">Add new astronaut</a>
   </div>
   
