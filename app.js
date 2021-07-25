@@ -69,12 +69,14 @@ app.use((err, req, res, next) => {
 app.get("/", (req, res) => {
   res.render("mains/home", {
     pageTitle: "Astronauts",
+    path: "/mains/home"
   });
 });
 
 app.get("/*", (req, res) => {
   res.render("mains/404", {
     pageTitle: "Oh now! You have got lost!",
+    path: "/mains/404"
   });
 });
 

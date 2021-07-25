@@ -7,6 +7,7 @@ module.exports.showRegisterForm = (req, res) => {
     errors: [],
     username: null,
     email: null,
+    path: "/users/register",
   });
 };
 
@@ -21,6 +22,7 @@ module.exports.registerNewUser = async (req, res) => {
       }),
       username: username,
       email: email,
+      path: "/users/register",
     });
   }
 
@@ -35,6 +37,7 @@ module.exports.registerNewUser = async (req, res) => {
 module.exports.showLoginForm = (req, res) => {
   res.render("users/login", {
     pageTitle: "Login",
+    path: "/users/login",
   });
 };
 

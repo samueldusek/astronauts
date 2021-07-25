@@ -12,6 +12,7 @@ module.exports.showAllAstronauts = async (req, res, next) => {
   res.render("astronauts/index", {
     pageTitle: "All Astronauts",
     astronauts: user.astronauts,
+    path: "/astronauts/all",
   });
 };
 
@@ -21,6 +22,7 @@ module.exports.showAddForm = (req, res) => {
     isEditing: false,
     isFixing: false,
     errors: [],
+    path: "/astronauts/add",
   });
 };
 
@@ -39,6 +41,7 @@ module.exports.showEditForm = async (req, res, next) => {
       birthday: editedAstronaut.birthday.toISOString().slice(0, 10),
     },
     errors: [],
+    path: "/astronauts/add",
   });
 };
 
@@ -57,6 +60,7 @@ module.exports.addNewAstronaut = async (req, res, next) => {
         return { msg: error.msg, param: error.param };
       }),
       astronaut: astronaut,
+      path: "/astronauts/add",
     });
   }
 
@@ -91,6 +95,7 @@ module.exports.editAstronaut = async (req, res, next) => {
         return { msg: error.msg, param: error.param };
       }),
       astronaut: { ...astronaut, _id: astronautId },
+      path: "/astronauts/add",
     });
   }
 

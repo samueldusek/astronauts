@@ -1,0 +1,34 @@
+body {
+  background-image: url("../img/logo2.svg");
+  background-position: bottom;
+  background-size: auto 50%;
+  background-repeat: no-repeat;
+}
+
+.addForm-mainBox {
+  width: 90%;
+  max-width: 450px;
+  margin: auto;
+}
+
+.addForm-mainBox h1 {
+  text-align: center;
+}
+
+.addForm-mainBox .logo {
+  text-align: center;
+}
+
+.addForm-mainBox .logo a {
+  text-decoration: none;
+  font-size: 1rem;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  color: black;
+  letter-spacing: 0.2rem;
+  font-weight: bold;
+}
+
+.addForm-mainBox form label {
+  font-weight: bold;
+}

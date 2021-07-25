@@ -1,63 +1,101 @@
 <% layout('/layouts/mainTemplate') %>
 
-<h1>Add new astronaut</h1>
-<div>
-  <form action="/astronauts/<%= isEditing ? `${astronaut._id}?_method=PUT` : 'add' %>" method="POST">
-    <label for="firstName">Firstname: </label>
-    <input
-      type="text"
-      id="firstName"
-      name="astronaut[firstName]"
-      required
-      <% if(isEditing || isFixing) { %>
-        value="<%= astronaut.firstName %>"
+<div class="addForm-mainBox">
+  <h1>Add new team member to</h1>
+  <div class="logo my-3">
+    <a class="title text-uppercase" href="/astronauts/all">
+      <%= currentUser.username %>'s Astronauts
+    </a>
+  </div>
+  <form class="validated-form" action="/astronauts/<%= isEditing ? `${astronaut._id}?_method=PUT` : 'add' %>" method="POST" novalidate>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">Firstname: </label>
+      <input
+        class="form-control <%= errors.find(e => e.param === "astronaut.firstName") ? "is-invalid" : "" %>"
+        type="text"
+        id="firstName"
+        name="astronaut[firstName]"
+        placeholder="Enter the astronaut's firstname"
+        required
+        <% if(isEditing || isFixing) { %>
+          value="<%= astronaut.firstName %>"
         <% } %>  
-    /><br />
-    <% if(errors.find(error => error.param === "astronaut.firstName")) { %>
-      <p><%= errors.filter(error => error.param === 'astronaut.firstName')[0].msg %> </p>
-      <% } %>  
-    <label for="lastName">Lastname: </label>
+      />
+      <div class="invalid-feedback">
+        <% if(errors.find(error => error.param === "astronaut.firstName")) { %>
+          <%= errors.filter(error => error.param === 'astronaut.firstName')[0].msg %>
+        <% } else { %>
+          Please give your astronaut firstname.
+        <% } %>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Lastname: </label>
+      <input
+        class="form-control"
+        type="text"
+        id="lastName"
+        name="astronaut[lastName]"
+        placeholder="Enter the astronaut's lastname"
+        required
+        <% if(isEditing || isFixing) { %>
+          value="<%= astronaut.lastName %>"
+          <% } %>  
+      />
+      <div class="invalid-feedback">
+        <% if(errors.find(error => error.param === "astronaut.lastName")) { %>
+          <%= errors.filter(error => error.param === 'astronaut.lastName')[0].msg %>
+        <% } else { %>
+          Please give your astronaut lastname.
+        <% } %>
+      </div>
+    </div>
+    <div class="mb-3">  
+      <label for="birthday" class="form-label">Birthday: </label>
+      <input
+        class="form-control"
+        type="date"
+        id="birthday"
+        name="astronaut[birthday]"
+        required
+        <% if(isEditing) { %>
+          value="<%= astronaut.birthday %>"
+          <% } %>  
+      />
+      <div class="invalid-feedback">
+        <% if(errors.find(error => error.param === "astronaut.birthday")) { %>
+          <%= errors.filter(error => error.param === 'astronaut.birthday')[0].msg %>
+        <% } else { %>
+          Please give your astronaut birthday.
+        <% } %>
+      </div>
+    </div>
+    <div class="mb-3">
+    <label for="superpower" class="form-label">Superpower: </label>
     <input
-      type="text"
-      id="lastName"
-      name="astronaut[lastName]"
-      required
-      <% if(isEditing || isFixing) { %>
-        value="<%= astronaut.lastName %>"
-        <% } %>  
-    /><br />
-    <% if(errors.find(error => error.param === "astronaut.lastName")) { %>
-      <p><%= errors.filter(error => error.param === 'astronaut.lastName')[0].msg %> </p>
-      <% } %>  
-    <label for="birthday">Birthday: </label>
-    <input
-      type="date"
-      id="birthday"
-      name="astronaut[birthday]"
-      required
-      <% if(isEditing) { %>
-        value="<%= astronaut.birthday %>"
-        <% } %>  
-    /><br />
-    <% if(errors.find(error => error.param === "astronaut.birthday")) { %>
-      <p><%= errors.filter(error => error.param === 'astronaut.birthday')[0].msg %> </p>
-      <% } %>  
-    <label for="superpower">Superpower: </label>
-    <input
+      class="form-control"
       type="text"
       id="superpower"
       name="astronaut[superpower]"
+      placeholder="Enter the astronaut's superpower"
       required
       <% if(isEditing || isFixing) { %>
         value="<%= astronaut.superpower %>"
-        <% } %>  
-    /><br />
-    <% if(errors.find(error => error.param === "astronaut.superpower")) { %>
-      <p><%= errors.filter(error => error.param === 'astronaut.superpower')[0].msg %> </p>
       <% } %>  
-    <button type="Submit">Save</button>
+    />
+    <div class="invalid-feedback">
+      <% if(errors.find(error => error.param === "astronaut.superpower")) { %>
+        <%= errors.filter(error => error.param === 'astronaut.superpower')[0].msg %>
+      <% } else { %>
+        Please give your astronaut superpower.
+      <% } %>
+    </div>
+    </div>  
+    <button type="Submit" class="btn btn-dark w-100">Save</button>
   </form>
+  <div class="mt-2">
+    <a class="btn btn-outline-dark w-100" href="/astronauts/all">Go back</a>
+  </div>
 </div>
-<div>
-  <a href="/astronauts/all">Go back</a>
-</div>
+
+<script src="/js/validateForm.js"></script>
